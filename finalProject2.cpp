@@ -31,24 +31,23 @@ Mat drawLine() {
 	rectangle(src, Rect(700, 300, 200, 100), Scalar(0, 0, 0), 2);
 	rectangle(src, Rect(700, 400, 200, 100), Scalar(0, 0, 0), 2);
 	const string text1[] = { "Save", "Load", "Clear", "Run", "Exit" };
-	const string text2[] = { "contour", "feature1", "feature2", "feature3", "feature4"};
+	const string text2[] = { "contour", "feature1", "feature2", "feature3", "feature4" };
 	int fontFace = FONT_HERSHEY_SIMPLEX;
-	double fontScale = 1.5;
-	double fontScale2 = 1.2;
+	double fontScale = 1.3;
 	int thickness = 2;
 	for (int i = 0; i < 5; i++) {
 		Size sizeText = getTextSize(text1[i], fontFace, fontScale, thickness, 0);
 		Size sizeText1 = getTextSize(text2[i], fontFace, fontScale, thickness, 0);
 		Size sizeImg = src.size();
 		int buttonXStart1 = 500;
-		int buttonXStart2 = 720;
+		int buttonXStart2 = 700;
 		int buttonWidth = 200;
 
 		Point org1(buttonXStart1 + (buttonWidth - sizeText.width) / 2, 500 * i / 5 + (sizeImg.height + sizeText.height) / 8);
 		Point org2(buttonXStart2 + (buttonWidth - sizeText1.width) / 2, 500 * i / 5 + (sizeImg.height + sizeText1.height) / 8);
 
 		putText(src, text1[i], org1, fontFace, fontScale, Scalar(0), thickness);
-		putText(src, text2[i], org2, fontFace, fontScale2, Scalar(0), thickness);
+		putText(src, text2[i], org2, fontFace, fontScale, Scalar(0), thickness);
 	}
 	return src;
 }
@@ -92,9 +91,21 @@ void on_mouse(int event, int x, int y, int flags, void* userdata) {
 			cvtColor((*(Mat*)userdata), gray, COLOR_BGR2GRAY);
 			Mat gray_img = gray(Rect(2, 2, 496, 496));
 			threshold(gray_img, bin, 0, 255, THRESH_BINARY_INV | THRESH_OTSU);
+			morphologyEx(bin, bin, MORPH_CLOSE, Mat(30, 30, CV_8UC1));
 			vector<vector<Point>> contours;
 			findContours(bin, contours, RETR_LIST, CHAIN_APPROX_NONE);
+			imshow("bin", bin);
+		
 			cout << "검출된 외곽선: " << contours.size() << endl;
+			if (contours.size() == 1) {
+				cout << "예상 숫자: 1, 2, 3, 5, 7" << endl;
+			}
+			else if (contours.size() == 2) {
+				cout << "예상 숫자: 0, 4, 6, 9" << endl;
+			}
+			else if (contours.size() == 3) {
+				cout << "예상 숫자: 8" << endl;
+			}
 		}
 		break;
 	case EVENT_MOUSEMOVE:
@@ -112,3 +123,4 @@ void on_mouse(int event, int x, int y, int flags, void* userdata) {
 		}
 	}
 }
+
