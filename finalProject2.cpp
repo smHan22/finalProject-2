@@ -58,23 +58,23 @@ void on_mouse(int event, int x, int y, int flags, void* userdata) {
 	case EVENT_LBUTTONDOWN:
 		pt0ld = Point(x, y);
 		if (Rect(500, 200, 200, 100).contains(Point(x, y))) {       // clear
-			(*(Mat*)userdata)(Rect(0, 0, 500, 500)) = Scalar(255, 255, 255);		// userdata¸¦ Mat Å¸ÀÔÀ¸·Î Ä³½ºÆÃÇÏ°í ÀÌ¸¦ ÂüÁ¶ÇÏ¿© 500x500 ¿µ¿ªÀ» Èò»öÀ¸·Î Ã¤¿ò
-			rectangle((*(Mat*)userdata), Rect(0, 0, 500, 500), Scalar(0), 2);		// °°Àº Mat °´Ã¼¿¡ °ËÀº»ö Å×µÎ¸®¸¦ ±×¸²
-			cout << "ÀÔ·ÂÃ¢ »èÁ¦µÊ" << endl;
-			imshow("Windows", (*(Mat*)userdata));						 // º¯°æµÈ ÀÌ¹ÌÁö¸¦ ´Ù½Ã Ç¥½ÃÇÔ
+			(*(Mat*)userdata)(Rect(0, 0, 500, 500)) = Scalar(255, 255, 255);		// userdataë¥¼ Mat íƒ€ìž…ìœ¼ë¡œ ìºìŠ¤íŒ…í•˜ê³  ì´ë¥¼ ì°¸ì¡°í•˜ì—¬ 500x500 ì˜ì—­ì„ í°ìƒ‰ìœ¼ë¡œ ì±„ì›€
+			rectangle((*(Mat*)userdata), Rect(0, 0, 500, 500), Scalar(0), 2);		// ê°™ì€ Mat ê°ì²´ì— ê²€ì€ìƒ‰ í…Œë‘ë¦¬ë¥¼ ê·¸ë¦¼
+			cout << "ìž…ë ¥ì°½ ì‚­ì œë¨" << endl;
+			imshow("Windows", (*(Mat*)userdata));						 // ë³€ê²½ëœ ì´ë¯¸ì§€ë¥¼ ë‹¤ì‹œ í‘œì‹œí•¨
 		}
 		else if (Rect(500, 0, 200, 100).contains(Point(x, y))) {		// save
 			string fileName;
 			Mat save = (*(Mat*)userdata)(Rect(2, 2, 496, 496)).clone();
 			resize(save, save, Size(500, 500));
-			cout << "ÆÄÀÏ¸í ÀÔ·Â: ";
+			cout << "íŒŒì¼ëª… ìž…ë ¥: ";
 			cin >> fileName;
 			imwrite(fileName, save);
-			cout << fileName << "ÀÌ ÀúÀåµÊ" << endl;
+			cout << fileName << "ì´ ì €ìž¥ë¨" << endl;
 		}
 		else if (Rect(500, 100, 200, 100).contains(Point(x, y))) {		// load
 			string fileName;
-			cout << "ÆÄÀÏ¸íÀ» ÀÔ·ÂÇÏ½Ã¿À: ";
+			cout << "íŒŒì¼ëª…ì„ ìž…ë ¥í•˜ì‹œì˜¤: ";
 			cin >> fileName;
 			Mat numberImg = imread(fileName);
 			rectangle(numberImg, Rect(0, 0, 500, 500), Scalar(0), 2);
@@ -94,7 +94,7 @@ void on_mouse(int event, int x, int y, int flags, void* userdata) {
 			threshold(gray_img, bin, 0, 255, THRESH_BINARY_INV | THRESH_OTSU);
 			vector<vector<Point>> contours;
 			findContours(bin, contours, RETR_LIST, CHAIN_APPROX_NONE);
-			cout << "°ËÃâµÈ ¿Ü°û¼±: " << contours.size() << endl;
+			cout << "ê²€ì¶œëœ ì™¸ê³½ì„ : " << contours.size() << endl;
 		}
 		break;
 	case EVENT_MOUSEMOVE:
