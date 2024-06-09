@@ -16,6 +16,13 @@
 
 ● 두 중심좌표의 y축 차가 음수이면 6, 양수이면 9, 두 점의 거리 차가 10 이내이면 0으로 추측
 
+![image](https://github.com/smHan22/finalProject-2/assets/90818408/01b2ff70-c511-4733-99d8-3926e919f201)
+
+![image](https://github.com/smHan22/finalProject-2/assets/90818408/79a310fa-4fad-4bb4-bce3-59dca1171f4c)
+
+![image](https://github.com/smHan22/finalProject-2/assets/90818408/f2f2904d-c558-43dc-86e4-f747ce07e028)
+
+
 # PixelCount 영역
 
 ● 초기 처리로 그레이스케일, 이진화, 모폴로지 닫힘 연산, 외곽선 검출 진행
