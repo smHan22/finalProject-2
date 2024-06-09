@@ -1,3 +1,9 @@
+➨ 이번 프로젝트는 OpenCV 라이브러리를 사용하여 사용자가 그리는 숫자의 특징을 검출하는 프로그램입니다.
+
+https://youtu.be/T_PJqr3y7Rg
+
+실행 동영상 링크
+
 # Contour 영역
 
 ● 이미지를 GRAYSCALE변환과 이진화 변환
