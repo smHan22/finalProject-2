@@ -32,3 +32,8 @@
 ● 각 영역의 픽셀 수를 전체 픽셀 수로 나누어서 백분율로 변환
 
 ● 바운딩 박스와 중심좌표 및 수직, 수평선을 시각화하여 이해 도움
+
+![image](https://github.com/smHan22/finalProject-2/assets/90818408/c2f4b637-fcbe-49df-bafa-e8660658f5ff)
+
+![image](https://github.com/smHan22/finalProject-2/assets/90818408/c6187f31-ecd9-437a-bf51-91515ca19cec)
+
