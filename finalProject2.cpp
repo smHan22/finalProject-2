@@ -309,15 +309,12 @@ tuple<int, int, int, int> PixelCount(const Mat& image) {		// PixelPoint
 	Point StartPoint1(rect1.x, rect1.y + rect1.height / 2);
 	Point EndPoint1(rect1.x + rect1.width, rect1.y + rect1.height / 2);
 	line(bin, StartPoint1, EndPoint1, Scalar(255, 0, 0), 2);
-	
+
 	imshow("boundingbox", bin);
-	
-	
+
+
 	if (contours.size() == 2 && u_count <= 70 && d_count >= 30 && l_count >= 10 && r_count >= 10) {
 		cout << "검출된 숫자: 4" << endl;
-	}
-	else if (u_count >= 60 && d_count <= 40 && l_count <= 40 && r_count >= 60) {
-		cout << "검출된 숫자: 7" << endl;
 	}
 	else if (u_count <= 50 && d_count <= 51 && l_count <= 70 && r_count <= 70) {
 		cout << "검출된 숫자: 1" << endl;
@@ -327,6 +324,12 @@ tuple<int, int, int, int> PixelCount(const Mat& image) {		// PixelPoint
 	}
 	else if (u_count >= 55 && d_count <= 47 && l_count >= 47 && r_count <= 50) {
 		cout << "검출된 숫자: 5" << endl;
+	}
+	else if(u_count <= 67 && d_count <= 60 && l_count < r_count){
+		cout << "검출된 숫자: 3" << endl;
+	}
+	else if (u_count >= 60 && d_count <= 40 && l_count <= 40 && r_count >= 60) {
+		cout << "검출된 숫자: 7" << endl;
 	}
 	return make_tuple(u_count, d_count, l_count, r_count);
 }
