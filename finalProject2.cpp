@@ -244,7 +244,7 @@ void ShowContoursAndCenters(const Mat& image) {		// Run
 		else if (contours.size() == 2 && center1.y > center2.y) {
 			cout << "검출된 숫자: 6" << endl;
 		}
-		else if (contours.size() == 3) {
+		if (contours.size() == 3) {
 			cout << "검출된 숫자: 8" << endl;
 		}
 	}
@@ -260,7 +260,7 @@ tuple<int, int, int, int> PixelCount(const Mat& image) {		// PixelPoint
 	morphologyEx(bin, bin, MORPH_CLOSE, Mat(30, 30, CV_8UC1));
 
 	vector<vector<Point>> contours;
-	findContours(bin, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+	findContours(bin, contours, RETR_LIST, CHAIN_APPROX_NONE);
 
 	Rect rect = boundingRect(contours[0]);
 	int center_x = rect.x + rect.width / 2;
@@ -309,16 +309,24 @@ tuple<int, int, int, int> PixelCount(const Mat& image) {		// PixelPoint
 	Point StartPoint1(rect1.x, rect1.y + rect1.height / 2);
 	Point EndPoint1(rect1.x + rect1.width, rect1.y + rect1.height / 2);
 	line(bin, StartPoint1, EndPoint1, Scalar(255, 0, 0), 2);
-
+	
 	imshow("boundingbox", bin);
-	/*
-	if (u_count >= 60 && d_count <= 40 && l_count <= 40 && r_count >= 60) {
-		cout << "7" << endl;
+	
+	
+	if (contours.size() == 2 && u_count <= 70 && d_count >= 30 && l_count >= 10 && r_count >= 10) {
+		cout << "검출된 숫자: 4" << endl;
+	}
+	else if (u_count >= 60 && d_count <= 40 && l_count <= 40 && r_count >= 60) {
+		cout << "검출된 숫자: 7" << endl;
 	}
 	else if (u_count <= 50 && d_count <= 51 && l_count <= 70 && r_count <= 70) {
-		cout << "1" << endl;
+		cout << "검출된 숫자: 1" << endl;
 	}
-	*/
+	else if (u_count <= 47 && d_count <= 63 && l_count <= 55 && r_count <= 60) {
+		cout << "검출된 숫자: 2" << endl;
+	}
+	else if (u_count >= 55 && d_count <= 47 && l_count >= 47 && r_count <= 50) {
+		cout << "검출된 숫자: 5" << endl;
+	}
 	return make_tuple(u_count, d_count, l_count, r_count);
 }
-
